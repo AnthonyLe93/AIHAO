@@ -2,14 +2,13 @@ import pyttsx3
 
 class AudioEngine:
     """
-        This class initialised audio engine and
+        This class initialised audio engine and enable machine to
         output speech.
     """
     def __init__(self):
         self.engine = pyttsx3.init()
 
     def assistantResponse(self, text):
-        print(text)
         self.engine.say(text)
         self.engine.runAndWait()
 
