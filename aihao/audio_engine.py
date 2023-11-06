@@ -1,25 +1,23 @@
 import pyttsx3
 
-def audio_engine():
-    engine = pyttsx3.init()
-    voices = engine.getProperty('voices')
-    for voice in voices:
-        engine.setProperty('voice', voice.id)
-        engine.say('The quick brown fox jumped over the lazy dog.')
-    engine.runAndWait()
-    return engine
+class AudioEngine:
+    """
+        This class initialised audio engine and
+        output speech.
+    """
+    def __init__(self):
+        self.engine = pyttsx3.init()
 
-def assistantResponse(text):
-    print(text)
-    # init audio engine
-    engine = audio_engine()
-    engine.say(text)
-    engine.runAndWait()
+    def assistantResponse(self, text):
+        print(text)
+        self.engine.say(text)
+        self.engine.runAndWait()
 
 
 def main():
-    # assistantResponse("Hello Anthony")
-    audio_engine()
+    audio_engine = AudioEngine()
+    audio_engine.assistantResponse("Hello Anthony, what can i do for you?")
+
 
 if __name__ == "__main__":
     main()
