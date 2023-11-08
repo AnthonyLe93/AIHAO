@@ -12,7 +12,7 @@ class Greeting:
         return ''
 
     def wake_word(self, text):
-        WAKE_WORD = ['AIHAO', 'HEY AIHAO', 'YO AIHAO']
+        WAKE_WORD = ['AKARI', 'HEY AKARI', 'HI AKARI', 'HELLO AKARI']
 
         text = text.lower()
 
@@ -25,7 +25,7 @@ class Greeting:
 def main():
     greeting = Greeting()
     greeting.greeting('hi')
-    greeting.wake_word('aihao')
+    greeting.wake_word('akari')
 
 
 if __name__ == "__main__":
