@@ -1,5 +1,5 @@
 import pytest
-from aihao.speech_recognition import SpeechRecognition
+from aihao.speech_recognition_aihao import SpeechRecognition
 
 @pytest.mark.speech_recognition
 class TestSpeechRecognition:
