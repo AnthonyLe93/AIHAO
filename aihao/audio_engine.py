@@ -1,3 +1,5 @@
+import importlib
+
 import pyttsx3
 
 class AudioEngine:
@@ -25,10 +27,18 @@ class AudioEngine:
             self.voices_id_list.append(voice.id)
         return self.voices_id_list
 
-    def set_voice(self, voice_id='com.apple.voice.compact.ja-JP.Kyoko'):
-        self.engine.setProperty('voice', voice_id)
-
+    def set_voice(self, voice_id=None):
+        if voice_id:
+            id_ = voice_id
+            self.engine.setProperty('voice', id_)
+            self.engine.setProperty('rate', 200)
+            self.engine.setProperty('pitch', 0.8)
+        else:
+            print('using default voice')
+            self.engine.setProperty('rate', 220)
+            self.engine.setProperty('pitch', 0.8)
     def assistant_response(self, text):
+        importlib.reload(pyttsx3)
         self.set_voice()
         self.engine.say(text)
         self.engine.runAndWait()

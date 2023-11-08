@@ -31,7 +31,6 @@ class SpeechRecognition:
             machine_reponse = AudioEngine()
             machine_reponse.assistant_response('Sorry, my speech recognition function is not working at the moment,'
                                                'please try again later!')
-
         return data
 
 def main():
