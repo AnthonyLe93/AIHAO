@@ -1,6 +1,7 @@
 from audio_engine import AudioEngine
 from greeting import Greeting
 from speech_recognition_aihao import SpeechRecognition
+from util_funtions.date_time_aihao import get_date
 
 
 def main():
@@ -18,8 +19,8 @@ def main():
             except Exception as e:
                 responses = responses + ''
         if 'date' in text:
-            get_date = get_date()
-            responses = responses + ' ' + get_date
+            today_date = get_date()
+            responses = responses + ' ' + today_date
         if responses == '':
             responses = responses + "I'm Sorry I Can't Do That Yet"
 
