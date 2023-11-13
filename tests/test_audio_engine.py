@@ -32,3 +32,9 @@ class TestAudioEngine:
         audio_engine_obj.engine.setProperty.assert_called_with('voice', 'mocked_id')
         audio_engine_obj.engine.say.assert_called_with('Hello Anthony')
         audio_engine_obj.engine.runAndWait.assert_called_once()
+
+    def test_set_voice_with_id(self, audio_engine_obj):
+        assert audio_engine_obj.set_voice(voice_id='com.apple.voice.compact.pt-PT.Joana') is True
+
+    def test_set_voice_without_id(self, audio_engine_obj):
+        assert audio_engine_obj.set_voice() is False

@@ -1,8 +1,5 @@
 import pytest
 from aihao.util_funtions.date_time_aihao import get_date
-import datetime
-import calendar
-from unittest.mock import Mock
 from freezegun import freeze_time
 
 # Define a test for the get_date function using pytest and freezegun
