@@ -38,3 +38,12 @@ class TestAudioEngine:
 
     def test_set_voice_without_id(self, audio_engine_obj):
         assert audio_engine_obj.set_voice() is False
+
+    def test_assistant_response(self, audio_engine_obj, capsys):
+        text = "Hello, testing default voice!"
+        audio_engine_obj.engine.say = Mock()
+        audio_engine_obj.engine.runAndWait = Mock()
+        audio_engine_obj.assistant_response(text)
+        audio_engine_obj.engine.say.assert_called_once()
+        audio_engine_obj.engine.runAndWait.assert_called_once()
+
