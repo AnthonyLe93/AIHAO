@@ -6,7 +6,7 @@ from aihao.greeting import Greeting
 
 @pytest.mark.greeting
 class TestGreeting:
-    @pytest.fixture(scope='class')
+    @pytest.fixture(scope='function')
     def greeting_obj(self):
         greeting = Greeting()
         return greeting

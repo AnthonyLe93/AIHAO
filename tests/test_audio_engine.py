@@ -4,7 +4,7 @@ from unittest.mock import Mock
 
 @pytest.mark.audio_engine
 class TestAudioEngine:
-    @pytest.fixture(scope='class')
+    @pytest.fixture(scope='function')
     def audio_engine_obj(self):
         audio_engine = AudioEngine()
         return audio_engine
