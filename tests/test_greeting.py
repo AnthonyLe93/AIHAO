@@ -1,7 +1,7 @@
 import random
 
 import pytest
-from unittest.mock import patch
+from unittest.mock import patch, Mock
 from aihao.greeting import Greeting
 
 @pytest.mark.greeting
@@ -33,6 +33,16 @@ class TestGreeting:
         # Assert that the greeting_response is set to "Hi"
         assert greeting_obj.greeting_response == "Hi"
 
+    def test_greeting_with_response(self, greeting_obj):
+        greeting_obj.activate = True
+        assert greeting_obj.greeting() == 'Hello, how can i help you?'
+
+    def test_greeting_no_response(self, greeting_obj):
+        assert greeting_obj.greeting() == ''
 
 
+    def test_wake_word_detected(self, greeting_obj):
+        assert greeting_obj.wake_word('Hi David, how are you?') is True
 
+    def test_wake_word_not_detected(self, greeting_obj):
+        assert greeting_obj.wake_word('Hi, how are you?') is False
