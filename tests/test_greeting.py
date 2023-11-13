@@ -46,3 +46,4 @@ class TestGreeting:
 
     def test_wake_word_not_detected(self, greeting_obj):
         assert greeting_obj.wake_word('Hi, how are you?') is False
+
