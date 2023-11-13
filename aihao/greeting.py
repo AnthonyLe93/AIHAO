@@ -1,10 +1,10 @@
 import random
-
+from aihao.util_funtions.text_processor import replace_symbols_with_empty_string
 
 class Greeting:
     def __init__(self):
         self.greeting_inputs = ['hi', 'hey', 'hola', 'bonjour', 'hello']
-        self.greeting_response = None
+        self.greeting_response = 'Hello, how can i help you?'
         self.activate = False
 
     def random_greetings(self, greeting_prompts: str):
@@ -21,7 +21,7 @@ class Greeting:
         WAKE_WORD = ['david', 'David', 'DAVID']
 
         for word in text.split():
-            if word.lower() in [phrase for phrase in WAKE_WORD]:
+            if replace_symbols_with_empty_string(word.lower()) in [phrase for phrase in WAKE_WORD]:
                 self.activate = True
                 return True
         return False
