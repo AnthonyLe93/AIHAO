@@ -15,7 +15,7 @@ env:
   CI: ${{vars.CI}}
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     services:
       postgres:
         image: postgres
