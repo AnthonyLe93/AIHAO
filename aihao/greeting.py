@@ -30,7 +30,6 @@ class Greeting:
 def main():
     greeting = Greeting()
     greeting.wake_word('david')
-    greeting.random_greetings()
     print(greeting.greeting_response)
 
 
