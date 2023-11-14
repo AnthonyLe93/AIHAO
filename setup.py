@@ -1,8 +1,11 @@
+#!/usr/bin/env python3
+
 from setuptools import setup, find_packages
 
 setup(
-    name='your_package_name',
-    version='1.0.0',
+    name='AIHAO',
+    version='0.0.1',
     packages=find_packages(exclude=['config', 'notebooks']),  # Add 'aihao' as the parameter
-    # other setup parameters...
+    package_dir={'aihao': 'aihao'},  # specify the 'aihao' directory as the root package directory
+
 )
