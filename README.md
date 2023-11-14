@@ -3,6 +3,8 @@
 
 
 ## Presequisite:
+*please note that currently this library is only compatible with macosX*
+
 *make sure `pyobjc-core==9.0.1`*
 
 *after do pip freeze > requirements.txt delete all the pyobjc-framework\* entries to avoid package conflict*
