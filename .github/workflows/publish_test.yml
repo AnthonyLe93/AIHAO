@@ -3,7 +3,7 @@ on:
   release:
     types: [published]
 jobs:
-  pypi:
+  testpypi:
     runs-on: ubuntu-latest
     environment:
       name: development
