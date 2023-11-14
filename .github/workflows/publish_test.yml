@@ -4,7 +4,7 @@ on:
     types: [published]
 jobs:
   pypi:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     environment:
       name: development
     steps:
