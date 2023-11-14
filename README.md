@@ -11,3 +11,7 @@
 `cd ./config`
 
 `./setup.sh`
+
+
+## Publish release using Github CLI
+`gh release create --repo seanh/gha-python-packaging-demo --title "First release!" --notes "This is the first release!" 0.0.1`
