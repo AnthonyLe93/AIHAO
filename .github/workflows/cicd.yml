@@ -19,6 +19,8 @@ jobs:
         python-version: [ "3.9", "3.10", "3.11" ]
     steps:
     - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
     - name: Set up Python # Set Python version
       uses: actions/setup-python@v4
       with:
@@ -55,16 +57,11 @@ jobs:
       if: ${{ always() }}
   sonarcloud:
     name: SonarCloud
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     needs: [ build ]
     steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      - name: Run unit-tests in SonarCloud
-        run: pytest
