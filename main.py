@@ -9,11 +9,11 @@ greeting_prompts = 'data/greeting_prompts.txt'
 
 def main():
     audio_engine = AudioEngine()
-    audio_regcognizer = SpeechRecognition()
+    audio_recognizer = SpeechRecognition()
     speak = Greeting()
 
     while True:
-        text = audio_regcognizer.record_audio()
+        text = audio_recognizer.record_audio()
         # Process the recognized text and generate responses
         responses = ''
         if text:
