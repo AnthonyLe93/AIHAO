@@ -1,6 +1,7 @@
 from audio_engine import AudioEngine
 from greeting import Greeting
 from speech_recognition_aihao import SpeechRecognition
+from offline_speech_recognition_aihao import OfflineSpeechRecognition
 from util_funtions.date_time_aihao import get_date
 import time
 
@@ -10,10 +11,11 @@ greeting_prompts = 'data/greeting_prompts.txt'
 def main():
     audio_engine = AudioEngine()
     audio_recognizer = SpeechRecognition()
+    offline_audio_recognizer = OfflineSpeechRecognition()
     speak = Greeting()
 
     while True:
-        text = audio_recognizer.record_audio()
+        text = offline_audio_recognizer.record_audio()
         # Process the recognized text and generate responses
         responses = ''
         if text:
