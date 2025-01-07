@@ -14,6 +14,8 @@
 
 `./setup.sh`
 
+* After this go to your project settings and add the python interpreter to be your virtual env and the virtual env will 
+* be sourced everytime a new terminal is open (this is only applicable to pycharm).
 
 ## Publish release using Github CLI
 `gh release create --repo seanh/gha-python-packaging-demo --title "First release!" --notes "This is the first release!" 0.0.1`
