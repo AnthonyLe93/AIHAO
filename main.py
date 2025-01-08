@@ -1,18 +1,13 @@
 from audio_engine import AudioEngine
 from greeting import Greeting
-from speech_recognition_aihao import SpeechRecognition
 from offline_speech_recognition_aihao import OfflineSpeechRecognition
 from util_funtions.date_time_aihao import get_date
-import time
-
-
-greeting_prompts = 'data/greeting_prompts.txt'
 
 def main():
     audio_engine = AudioEngine()
-    audio_recognizer = SpeechRecognition()
     offline_audio_recognizer = OfflineSpeechRecognition()
     speak = Greeting()
+    speak.load_greetings()
 
     while True:
         text = offline_audio_recognizer.record_audio()
@@ -20,21 +15,23 @@ def main():
         responses = ''
         if text:
             if speak.wake_word(text):
-                speak.random_greetings(greeting_prompts)
-                responses = responses + speak.greeting()
-            if 'date' in text:
+                speak.random_greetings()
+                responses += speak.greeting()
+            elif 'date' in text or 'day' in text:
                 today_date = get_date()
-                responses = responses + ' ' + today_date
-            if responses == '':
-                responses = responses + "I'm Sorry I Can't Do That Yet"
-
+                responses += today_date
+            elif 'stop' in text or 'goodbye' in text:  # Check if the "stop" or "goodbye" keyword is present
+                responses += speak.goodbye()
+                audio_engine.assistant_response(responses)
+                break
+            else:
+                responses += "I'm sorry, I can't do that yet."
             # Response
             audio_engine.assistant_response(responses)
-            time.sleep(1)  # Check for audio every 1 second
         else:
             print("No audio input detected.")
-            print("----------------------------")
 
+        print("----------------------------")
 
 if __name__ == "__main__":
     main()
