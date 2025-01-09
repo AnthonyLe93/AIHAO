@@ -1,7 +1,5 @@
-import random
-
 import pytest
-from unittest.mock import patch, Mock
+from unittest.mock import patch, Mock, mock_open
 from aihao.greeting import Greeting
 
 @pytest.mark.greeting
@@ -11,34 +9,45 @@ class TestGreeting:
         greeting = Greeting()
         return greeting
 
-    @patch('builtins.open', create=True)
-    def test_random_greetings(self, mock_open, greeting_obj):
-        # Mocking the open function
-        greeting_prompts = "greetings.txt"
-        mock_file = mock_open.return_value
-        mock_file.read.return_value = ("Hello\n"
-                                       "Hi\n"
-                                       "Hey\n")
+    def test_initialization(self, greeting_obj):
+        # Test if the object is initialized correctly
+        assert greeting_obj.greeting_inputs == ['hi', 'hey', 'hola', 'bonjour', 'hello']
+        assert greeting_obj.greeting_response == 'Hello, how can i help you?'
+        assert greeting_obj.goodbye_response == "Goodbye! have a nice day!"
+        assert not greeting_obj.activate
+        assert greeting_obj.greeting_list == []
 
-        # Mocking random.choice to always return "Hi"
-        with patch('random.choice', lambda x: "Hi"):
-            greeting_obj.random_greetings(greeting_prompts)
+    def test_load_greetings_file_exists(self, greeting_obj):
+        # Mocking the file reading
+        mock_greetings = "hi\nhey\nhola\nbonjour\nhello"
 
-        # Assert that open was called with the correct file path
-        mock_open.assert_called_once_with(greeting_prompts)
+        with patch("builtins.open", mock_open(read_data=mock_greetings)):
+            greeting_obj.load_greetings()
+            assert greeting_obj.greeting_list == ['hi', 'hey', 'hola', 'bonjour', 'hello']
 
-        # Assert that read was called on the file object
-        mock_file.read.assert_called_once()
+    def test_load_greetings_file_not_found(self, greeting_obj):
+        # Testing the case when the file doesn't exist
+        with patch("os.path.exists", return_value=False):
+            with patch("builtins.print") as mock_print:
+                greeting_obj.load_greetings()
+                mock_print.assert_called_with(f"File not found: {greeting_obj.greeting_prompts}")
 
-        # Assert that the greeting_response is set to "Hi"
-        assert greeting_obj.greeting_response == "Hi"
+    def test_random_greetings(self, greeting_obj):
+        # Test when the greeting list is empty
+        greeting_obj.random_greetings()  # Call the method
+        assert greeting_obj.greeting_response == "Hello, how can I help you?"
 
-    def test_greeting_with_response(self, greeting_obj):
-        greeting_obj.activate = True
+        # Test when the greeting list is not empty
+        greeting_obj.greeting_list = ['hi', 'hey', 'hola', 'bonjour', 'hello']
+
+        with patch("random.choice") as mock_choice:
+            mock_choice.return_value = 'hey'  # Mocking random.choice to return 'hey'
+
+            greeting_obj.random_greetings()  # Call the method
+            assert greeting_obj.greeting_response == 'hey'  # Check that the greeting response is set correctly
+
+    def test_greeting_default_response(self, greeting_obj):
         assert greeting_obj.greeting() == 'Hello, how can i help you?'
-
-    def test_greeting_no_response(self, greeting_obj):
-        assert greeting_obj.greeting() == ''
 
 
     def test_wake_word_detected(self, greeting_obj):
