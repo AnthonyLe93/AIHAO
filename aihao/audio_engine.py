@@ -15,7 +15,8 @@ class AudioEngine:
         # Set up signal handler for SIGINT
         signal.signal(signal.SIGINT, self.handle_sigint)
 
-    def handle_sigint(self, signum, frame):
+    @staticmethod
+    def handle_sigint(signum, frame):
         # Handle the SIGINT signal (Ctrl+C)
         print("Received SIGINT. Exiting...")
         # Add any cleanup code if needed
@@ -53,6 +54,7 @@ class AudioEngine:
             self.engine.setProperty('pitch', 0.8)
             print('using default voice!')
             return False
+
     def assistant_response(self, text):
         importlib.reload(pyttsx3)
         self.engine.say(text)

@@ -34,9 +34,11 @@ class SpeechRecognition:
                                                ' please try again later!')
         return data
 
+
 def main():
     audio_recognizer = SpeechRecognition()
     audio_recognizer.record_audio()
+
 
 if __name__ == "__main__":
     main()

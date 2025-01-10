@@ -42,6 +42,7 @@ class Greeting:
                 return True
         return False
 
+
 def main():
     greeting = Greeting()
     greeting.wake_word('david')
