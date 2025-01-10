@@ -1,4 +1,4 @@
-certifi==2023.7.22
+certifi==2024.7.04
 cffi==1.17.1
 charset-normalizer==3.3.2
 coverage==7.3.2
@@ -8,7 +8,7 @@ flake8==6.1.0
 freezegun==1.2.2
 fsspec==2024.12.0
 huggingface-hub==0.27.1
-idna==3.4
+idna==3.7
 iniconfig==2.0.0
 mccabe==0.7.0
 mypy==1.7.0
@@ -175,7 +175,7 @@ python-dotenv==1.0.1
 pyttsx3==2.98
 PyYAML==6.0.2
 regex==2024.11.6
-requests==2.31.0
+requests==2.32.0
 safetensors==0.5.1
 six==1.16.0
 SpeechRecognition==3.10.0
@@ -185,6 +185,6 @@ tomli==2.0.1
 tqdm==4.67.1
 transformers==4.47.1
 typing_extensions==4.8.0
-urllib3==2.0.7
+urllib3==2.2.2
 vosk==0.3.44
 websockets==14.1
