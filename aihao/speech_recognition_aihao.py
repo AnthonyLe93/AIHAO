@@ -1,6 +1,7 @@
 import speech_recognition as sr
 from aihao.audio_engine import AudioEngine
 
+
 class SpeechRecognition:
     """
         This class creates a speech recognizer object and opens the microphone.
@@ -24,13 +25,13 @@ class SpeechRecognition:
             print('You said: ' + data)
         except sr.UnknownValueError:  # Checking for unknown errors
             print('Google Speech Recognition could not understand the audio')
-            machine_reponse = AudioEngine()
-            machine_reponse.assistant_response('Sorry, i could not understand what you said, please repeat!')
+            machine_response = AudioEngine()
+            machine_response.assistant_response('Sorry, i could not understand what you said, please repeat!')
         except sr.RequestError as c:
             print('Request results from Google Speech Recognition service error')
-            machine_reponse = AudioEngine()
-            machine_reponse.assistant_response('Sorry, my speech recognition function is not working at the moment,'
-                                               'please try again later!')
+            machine_response = AudioEngine()
+            machine_response.assistant_response('Sorry, my speech recognition function is not working at the moment,'
+                                               ' please try again later!')
         return data
 
 def main():
