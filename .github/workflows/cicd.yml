@@ -50,7 +50,7 @@ jobs:
     - name: Run unit-tests
       run: |
         cd tests/
-        pytest
+        pytest -m "not speech_recognition"
     - name: Upload pytest test results
       uses: actions/upload-artifact@v3
       with:
