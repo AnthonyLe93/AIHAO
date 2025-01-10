@@ -4,12 +4,6 @@ from unittest.mock import patch
 from speech_recognition import Recognizer, UnknownValueError, RequestError
 from aihao.audio_engine import AudioEngine
 
-
-# Mock AudioEngine class used in the method
-class MockAudioEngine:
-    def assistant_response(self, message):
-        pass  # Mocked to prevent actual audio output
-
 @pytest.mark.speech_recognition
 class TestSpeechRecognition:
     # Fixtures for mocking objects
