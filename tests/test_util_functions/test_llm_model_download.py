@@ -60,20 +60,3 @@ def test_download_model(mock_hf_hub_download):
     assert mock_hf_hub_download.call_count == len(FILE_NAMES)
 
 
-# def test_load_model_and_generate(mock_auto_tokenizer, mock_auto_model):
-#     """
-#     Test the load_model_and_generate function.
-#     """
-#     model_id = "mock_model_id"
-#     # Call the function
-#     result = load_model_and_generate(MOCK_INPUT_TEXT)
-#
-#     # Assertions
-#     mock_auto_tokenizer.from_pretrained.assert_called_once_with(model_id, token=os.getenv("HUGGING_FACE_API_KEY"))
-#     mock_auto_model.from_pretrained.assert_called_once_with(
-#         model_id,
-#         torch_dtype=torch.bfloat16,
-#         token=os.getenv("HUGGING_FACE_API_KEY")
-#     )
-#     assert mock_auto_model.generate.call_count == 1
-#     assert result == MOCK_GENERATED_TEXT

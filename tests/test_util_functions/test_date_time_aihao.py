@@ -6,7 +6,6 @@ from freezegun import freeze_time
 
 # Define a test for the get_date function using pytest and freezegun
 @freeze_time("2023-11-07 14:30:00")
-@pytest.fixture(scope="module")
 def test_get_date():
     # Call the function
     result = get_date()
