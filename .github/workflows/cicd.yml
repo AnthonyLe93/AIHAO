@@ -51,7 +51,7 @@ jobs:
     - name: Run unit-tests
       run: |
         cd tests/
-        pytest -m "not (speech_recognition or offline_speech_recognition or greeting or audio_engine)"
+        pytest -m "not (speech_recognition or offline_speech_recognition)"
     - name: Upload pytest test results
       uses: actions/upload-artifact@v3
       with:
