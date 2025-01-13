@@ -163,3 +163,4 @@ cython_debug/
 # exclude LLM model
 models/models--google--gemma-2b-it
 models/.locks
+models/vosk-model-en-us-0.22-lgraph
