@@ -27,8 +27,10 @@ models_repo_dir = os.path.join(os.path.dirname(__file__), '..', '..', 'models')
 os.makedirs(models_repo_dir, exist_ok=True)
 
 
-def download_and_load_model():
-    # Download the model files only if they don't exist in the target directory
+def download_model():
+    """
+    Download model files from the Hugging Face hub if they do not already exist.
+    """
     for filename in filenames:
         file_path = os.path.join(models_repo_dir, filename)
 
@@ -43,18 +45,32 @@ def download_and_load_model():
         else:
             print(f"{filename} already exists. Skipping download.")
 
-    tokenizer = AutoTokenizer.from_pretrained(model_id, token=HUGGING_FACE_API_KEY)
-    model = AutoModelForCausalLM.from_pretrained(model_id, torch_dtype=torch.bfloat16, token=HUGGING_FACE_API_KEY)
 
-    input_text = "Write me a poem about Machine Learning."
+def load_model_and_generate(input_text: str):
+    """
+    Load the model and tokenizer and generate text based on the input.
+    """
+    tokenizer = AutoTokenizer.from_pretrained(model_id, token=HUGGING_FACE_API_KEY)
+    model = AutoModelForCausalLM.from_pretrained(
+        model_id,
+        torch_dtype=torch.bfloat16,
+        token=HUGGING_FACE_API_KEY
+    )
+
     input_ids = tokenizer(input_text, return_tensors="pt")
 
     outputs = model.generate(**input_ids)
-    print(tokenizer.decode(outputs[0]))
+    generated_text = tokenizer.decode(outputs[0])
+    return generated_text
+
 
 def main():
     # Call the download and model loading function
-    download_and_load_model()
+    download_model()
+    input_text = "Write me a poem about Machine Learning."
+    generated_text = load_model_and_generate(input_text)
+    print("Generated Text:\n", generated_text)
+
 
 if __name__ == "__main__":
     main()

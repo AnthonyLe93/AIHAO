@@ -1,5 +1,7 @@
 import datetime
 import calendar
+
+
 def get_date():
     now = datetime.datetime.now()
     my_date = datetime.datetime.today()
@@ -17,5 +19,7 @@ def get_date():
 
 def main():
     get_date()
+
+
 if __name__ == "__main__":
     main()
