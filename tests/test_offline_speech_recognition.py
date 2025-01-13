@@ -3,7 +3,7 @@ import pytest
 from aihao.offline_speech_recognition_aihao import OfflineSpeechRecognition
 from unittest.mock import patch, MagicMock
 
-@pytest.mark.offlin_speech_recognition
+@pytest.mark.offline_speech_recognition
 class TestOfflineSpeechRecognition:
 
     @pytest.fixture
