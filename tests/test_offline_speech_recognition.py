@@ -2,9 +2,18 @@ import pyaudio
 import pytest
 from aihao.offline_speech_recognition_aihao import OfflineSpeechRecognition
 from unittest.mock import patch, MagicMock
+from vosk import Model
+
 
 @pytest.mark.offline_speech_recognition
 class TestOfflineSpeechRecognition:
+
+    @pytest.fixture
+    def mock_model(self, mocker):
+        # Mock the Model constructor to prevent the actual model loading
+        mock_model = MagicMock(spec=Model)
+        mocker.patch('vosk.Model', return_value=mock_model)
+        return mock_model
 
     @pytest.fixture
     def mock_kaldi_recognizer(self):

@@ -12,8 +12,13 @@ current_dir = os.path.dirname(os.path.abspath(__file__))
 # Define the relative path to the model
 model_path = os.path.join(current_dir, "../models/vosk-model-en-us-0.22-lgraph")
 
-# Initialize the model
-vosk_model = Model(model_path)
+# Check if the model exists
+if os.path.exists(model_path):
+    # Initialize the model
+    vosk_model = Model(model_path)
+    print("Vosk model initialized successfully.")
+else:
+    print(f"Model not found at {model_path}. Skipping initialization.")
 
 
 class OfflineSpeechRecognition:
