@@ -2,6 +2,7 @@ from audio_engine import AudioEngine
 from greeting import Greeting
 from offline_speech_recognition_aihao import OfflineSpeechRecognition
 from util_funtions.date_time_aihao import get_date
+from util_funtions.llm_model_download import load_model_and_generate
 
 def main():
     audio_engine = AudioEngine()
@@ -25,7 +26,7 @@ def main():
                 audio_engine.assistant_response(responses)
                 break
             else:
-                responses += "I'm sorry, I can't do that yet."
+                responses += load_model_and_generate(text)
             # Response
             audio_engine.assistant_response(responses)
         else:
